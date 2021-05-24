@@ -61,27 +61,35 @@
 
 - (BOOL)isDateInThisWeek:(NSDate *)date {
     
-    NSDateComponents *componentsDateStart = [[NSDateComponents alloc] init];
-    componentsDateStart.year = 2021;
-    componentsDateStart.month = 5;
-    componentsDateStart.day = 17;
+    NSCalendar *calendar = [NSCalendar currentCalendar];
     
-    NSDateComponents *componentsDateEnd = [[NSDateComponents alloc] init];
-    componentsDateEnd.year = 2021;
-    componentsDateEnd.month = 5;
-    componentsDateEnd.day = 23;
+    NSInteger todaysWeek = [calendar component:NSCalendarUnitWeekOfYear fromDate:date];
+    NSInteger dateWeek = [calendar component:NSCalendarUnitWeekOfYear fromDate:[NSDate now]];
     
-    NSCalendar *cal = [NSCalendar currentCalendar];
-    
-    NSDate *startDate = [cal dateFromComponents:componentsDateStart];
-    NSDate *endDate = [cal dateFromComponents:componentsDateEnd];
-    
-    if ((startDate.timeIntervalSince1970 < date.timeIntervalSince1970) && (date.timeIntervalSince1970 < endDate.timeIntervalSince1970)) {
-        return YES;
-    }
+    return dateWeek == todaysWeek ? YES : NO;
     
     
-    return NO;
+//    NSDateComponents *componentsDateStart = [[NSDateComponents alloc] init];
+//    componentsDateStart.year = 2021;
+//    componentsDateStart.month = 5;
+//    componentsDateStart.day = 24;
+    
+//    NSDateComponents *componentsDateEnd = [[NSDateComponents alloc] init];
+//    componentsDateEnd.year = 2021;
+//    componentsDateEnd.month = 5;
+//    componentsDateEnd.day = 30;
+    
+//    NSCalendar *cal = [NSCalendar currentCalendar];
+    
+//    NSDate *startDate = [cal dateFromComponents:componentsDateStart];
+//    NSDate *endDate = [cal dateFromComponents:componentsDateEnd];
+    
+//    if ((startDate.timeIntervalSince1970 < date.timeIntervalSince1970) && (date.timeIntervalSince1970 < endDate.timeIntervalSince1970)) {
+//        return YES;
+//    }
+    
+    
+//    return NO;
 }
 
 @end
